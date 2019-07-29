@@ -2,16 +2,15 @@ package com.elad.meetup.repo
 
 import com.elad.meetup.repo.network.ApiInterface
 import com.elad.meetup.model.CryptoCurrency
-import us.egek92.mvvm.persistance.dao.CryptoCurrencyDao
+import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
 import com.elad.meetup.utils.Constants
 import com.elad.meetup.utils.Utils
 import javax.inject.Inject
 
 
-class CryptoCurrencyRepository @Inject constructor(
-    private val apiInterface: ApiInterface,
-    private val cryptoCurrencyDao: CryptoCurrencyDao,
-    private val utils: Utils
+class CryptoCurrencyRepository @Inject constructor(private val apiInterface: ApiInterface, private val cryptoCurrencyDao: CryptoCurrencyDao, private val utils: Utils
+
+    // arrayList = data;
 ) {
 
     suspend fun getCryptocurrencies(limit: Int, offset: Int): List<CryptoCurrency> {

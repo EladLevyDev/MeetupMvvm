@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadData() {
+    private  fun loadData() {
         progressBar.visibility = View.VISIBLE
         cryptoCurrencyViewModel.loadCryptocurrencies(Constants.LIMIT, Constants.OFFSET)
     }

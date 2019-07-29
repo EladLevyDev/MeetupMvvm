@@ -7,7 +7,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
-import us.egek92.mvvm.persistance.dao.CryptoCurrencyDao
+import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
 import com.elad.meetup.room.local.Database
 import com.elad.meetup.viewmodel.CryptoCurrencyViewModelFactory
 import com.elad.meetup.utils.Constants

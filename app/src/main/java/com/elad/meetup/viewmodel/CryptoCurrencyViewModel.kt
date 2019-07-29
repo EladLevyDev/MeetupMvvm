@@ -10,9 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import com.elad.meetup.model.CryptoCurrency
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
@@ -39,8 +37,8 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
 
 
      fun loadCryptocurrencies(limit: Int, offset: Int) {
-
-        GlobalScope.launch {
+        // Dispatchers.IO (main-safety block)
+        CoroutineScope(Dispatchers.IO).launch {
 
             try {
                 val cryptoCurrencies = cryptoCurrencyRepository.getCryptocurrencies(limit, offset)
@@ -51,7 +49,6 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
                 e.printStackTrace()
             }
         }
-
     }
 
 }

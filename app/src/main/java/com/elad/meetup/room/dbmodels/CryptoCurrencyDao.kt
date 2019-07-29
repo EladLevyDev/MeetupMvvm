@@ -1,4 +1,4 @@
-package us.egek92.mvvm.persistance.dao
+package com.elad.meetup.room.dbmodels
 
 import androidx.room.Dao
 import androidx.room.Insert

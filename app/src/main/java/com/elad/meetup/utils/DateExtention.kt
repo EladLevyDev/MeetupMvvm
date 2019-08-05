@@ -1,4 +1,4 @@
-package us.egek92.mvvm.utils
+package com.elad.meetup.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

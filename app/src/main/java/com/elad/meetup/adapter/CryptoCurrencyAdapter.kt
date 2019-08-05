@@ -11,10 +11,6 @@ import com.elad.meetup.R
 import com.elad.meetup.model.CryptoCurrency
 import java.util.*
 
-/**
- * Created by Ege Kuzubasioglu on 10.06.2018 at 01:07.
- * Copyright (c) 2018. All rights reserved.
- */
 class CryptoCurrencyAdapter(
     cryptoCurrencies: List<CryptoCurrency>?) : RecyclerView.Adapter<CryptoCurrencyAdapter.CryptocurrencieViewHolder>() {
 

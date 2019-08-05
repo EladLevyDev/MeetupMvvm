@@ -1,4 +1,4 @@
-package us.egek92.mvvm.data.model
+package com.elad.meetup.model
 
 import com.elad.meetup.model.CryptoCurrency
 

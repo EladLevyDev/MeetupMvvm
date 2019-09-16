@@ -12,8 +12,6 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION.SDK_INT
 import androidx.core.content.ContextCompat.getSystemService
 
-
-
 class Utils @Inject constructor(private val context: Context) {
 
     fun isConnectedToInternet(): Boolean {

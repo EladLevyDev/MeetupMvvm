@@ -132,10 +132,11 @@ dependencies {
     // tests
     testImplementation 'junit:junit:4.12'
 
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'androidx.test:runner:1.2.0' // maybe androidTestImplementation?
+    testImplementation 'androidx.test:rules:1.2.0' // maybe androidTestImplementation?
+    testImplementation 'androidx.test:core:1.0.0'
     testImplementation 'org.robolectric:robolectric:4.2.1'
+
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

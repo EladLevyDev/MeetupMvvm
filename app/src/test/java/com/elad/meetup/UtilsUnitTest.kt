@@ -1,11 +1,14 @@
 package com.elad.meetup
 
+import android.content.Context
 import android.os.Build
+import androidx.test.core.app.ApplicationProvider
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 /**
@@ -21,7 +24,7 @@ class UtilsUnitTest {
 
 
     // context
-   // val context = ApplicationProvider.getApplicationContext<Context>()
+    val context = ApplicationProvider.getApplicationContext<Context>()
 
     // utils
   //  var utils: Utils

@@ -10,7 +10,8 @@ import java.io.Serializable
 @Entity(
     tableName = "cryptoCurrencies"
 )
-data class CryptoCurrency(
+
+data class CryptoCurrency @JvmOverloads constructor(
 
     @Json(name = "id")
     @PrimaryKey
@@ -19,7 +20,7 @@ data class CryptoCurrency(
 
     @Json(name = "name")
     @ColumnInfo(name = "name")
-    val name: String?,
+    var name: String?,
 
     @Json(name = "symbol")
     @ColumnInfo(name = "symbol")
@@ -72,4 +73,7 @@ data class CryptoCurrency(
     @Json(name = "last_updated")
     @ColumnInfo(name = "last_updated")
     val lastUpdated: Double
-) : Serializable
+) : Serializable {
+    constructor() : this("","","",0,0.0,"","","","","","","","","",0.0)
+
+}

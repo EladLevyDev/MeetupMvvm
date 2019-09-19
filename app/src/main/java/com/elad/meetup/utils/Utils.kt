@@ -11,6 +11,7 @@ import android.os.Build.VERSION_CODES.M
 import android.os.Build.VERSION
 import android.os.Build.VERSION.SDK_INT
 import androidx.core.content.ContextCompat.getSystemService
+import com.elad.meetup.model.CryptoCurrency
 
 class Utils @Inject constructor(private val context: Context) {
 
@@ -21,10 +22,12 @@ class Utils @Inject constructor(private val context: Context) {
             activeNetwork = connectivityMgr.activeNetworkInfo
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val nc = connectivityMgr.getNetworkCapabilities(connectivityMgr.activeNetwork)
-                if (nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                if (nc != null && nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                     // connected to mobile data
-                } else if (nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                } else if (nc != null && nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                     // connected to wifi
+                } else {
+                    return false
                 }
             } else {
                 if (activeNetwork!!.type == ConnectivityManager.TYPE_WIFI) {
@@ -36,5 +39,13 @@ class Utils @Inject constructor(private val context: Context) {
             }
         }
         return false
+    }
+
+    fun isNumberBigger(num1: Int, num2: Int): Boolean {
+        return num1 > num2
+    }
+
+    fun isCryptoCurrencyIsValid(cryptoCurrency: CryptoCurrency): Boolean {
+        return cryptoCurrency != null && !cryptoCurrency.name.isNullOrEmpty()
     }
 }

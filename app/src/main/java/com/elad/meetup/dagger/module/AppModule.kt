@@ -1,6 +1,7 @@
 package com.elad.meetup.dagger.module
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import androidx.room.migration.Migration
@@ -11,6 +12,7 @@ import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
 import com.elad.meetup.room.local.Database
 import com.elad.meetup.viewmodel.CryptoCurrencyViewModelFactory
 import com.elad.meetup.utils.Constants
+import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
 import javax.inject.Singleton
 
@@ -45,6 +47,12 @@ class AppModule(private val app: Application) {
     fun provideCryptocurrenciesDao(
         database: Database
     ): CryptoCurrencyDao = database.cryptocurrenciesDao()
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(): SharedPreferencesHelper =
+        SharedPreferencesHelper(app.getSharedPreferences("cryptoTEST", 0))
+
 
     @Provides
     @Singleton

@@ -16,7 +16,7 @@ data class CryptoCurrency @JvmOverloads constructor(
     @Json(name = "id")
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: String,
+    var id: String,
 
     @Json(name = "name")
     @ColumnInfo(name = "name")
@@ -36,7 +36,7 @@ data class CryptoCurrency @JvmOverloads constructor(
 
     @Json(name = "price_btc")
     @ColumnInfo(name = "price_btc")
-    val priceBtc: String?,
+    var priceBtc: String?,
 
     @Json(name = "24h_volume_usd")
     @ColumnInfo(name = "24h_volume_usd")

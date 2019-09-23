@@ -18,8 +18,8 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 //@Config(sdk = [Build.VERSION_CODES.N])
-class UtilsUnitTest {
 
+class UtilsUnitTest {
 
     // context
     val context = ApplicationProvider.getApplicationContext<Context>()
@@ -31,9 +31,8 @@ class UtilsUnitTest {
         utils = Utils(context)
     }
 
-
     @Test
-    fun isNetworkConnectedReturnNotConnected() {
+    fun isNetworkCheckerReturnNotConnected() {
         assertFalse(utils.isConnectedToInternet())
     }
 
@@ -49,6 +48,13 @@ class UtilsUnitTest {
 
     @Test
     fun isCyptoCurrencyValid() {
+        val CryptoCurrency = CryptoCurrency()
+        CryptoCurrency.name = "bitcoin"
+        assertTrue(utils.isCryptoCurrencyIsValid(CryptoCurrency))
+    }
+
+    @Test
+    fun isCreditCardIsUpCardReturnTrue() {
         val CryptoCurrency = CryptoCurrency()
         CryptoCurrency.name = "bitcoin"
         assertTrue(utils.isCryptoCurrencyIsValid(CryptoCurrency))

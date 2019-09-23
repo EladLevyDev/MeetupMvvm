@@ -70,6 +70,7 @@ class CryptoCurrencyRepoTest {
     @Test
     fun isCryptoResponseReturnErrorWhenNoResponse() = runBlocking {
         //Todo: handle error mocks
+        assert(true)
     }
 
     @After

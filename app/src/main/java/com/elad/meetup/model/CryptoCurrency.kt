@@ -74,6 +74,6 @@ data class CryptoCurrency @JvmOverloads constructor(
     @ColumnInfo(name = "last_updated")
     val lastUpdated: Double
 ) : Serializable {
-    constructor() : this("","","",0,0.0,"","","","","","","","","",0.0)
+    constructor(cryptoName: String) : this("", cryptoName, "", 0, 0.0, "", "", "", "", "", "", "", "", "", 0.0)
 
 }

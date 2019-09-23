@@ -48,15 +48,13 @@ class UtilsUnitTest {
 
     @Test
     fun isCyptoCurrencyValid() {
-        val CryptoCurrency = CryptoCurrency()
-        CryptoCurrency.name = "bitcoin"
+        val CryptoCurrency = CryptoCurrency("bitcoin")
         assertTrue(utils.isCryptoCurrencyIsValid(CryptoCurrency))
     }
 
     @Test
     fun isCreditCardIsUpCardReturnTrue() {
-        val CryptoCurrency = CryptoCurrency()
-        CryptoCurrency.name = "bitcoin"
+        val CryptoCurrency = CryptoCurrency("bitcoin")
         assertTrue(utils.isCryptoCurrencyIsValid(CryptoCurrency))
     }
 }

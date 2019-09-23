@@ -34,7 +34,7 @@ public class SharedPreferencesHelper {
      * @return {@code true} if writing to {@link SharedPreferences} succeeded. {@code false}
      * otherwise.
      */
-    public boolean savePersonalInfo(CryptoCurrency cryptoCurrency) {
+    public boolean saveCryptoslInfo(CryptoCurrency cryptoCurrency) {
         // Start a SharedPreferences transaction.
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(KEY_NAME, cryptoCurrency.getName());

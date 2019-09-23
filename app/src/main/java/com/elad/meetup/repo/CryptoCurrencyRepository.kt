@@ -1,6 +1,6 @@
 package com.elad.meetup.repo
 
-import android.content.SharedPreferences
+import android.text.TextUtils
 import com.elad.meetup.repo.network.ApiInterface
 import com.elad.meetup.model.CryptoCurrency
 import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
@@ -41,12 +41,13 @@ class CryptoCurrencyRepository @Inject constructor(
     }
 
     fun saveCryptoCurrency(crypto: CryptoCurrency) {
-        sharedPreferences.savePersonalInfo(crypto)
+        sharedPreferences.saveCryptoslInfo(crypto)
     }
 
     fun isSavedCryptoCurrencyValid(): Boolean {
         return sharedPreferences.isCryptoCurrencyValid
     }
+
 
     suspend fun getCryptocurrenciesFromApi(): List<CryptoCurrency> {
         return apiInterface.getCryptocurrencies(Constants.START_ZERO_VALUE)
@@ -55,6 +56,10 @@ class CryptoCurrencyRepository @Inject constructor(
 
     suspend fun getCryptocurrenciesFromDb(limit: Int, offset: Int): List<CryptoCurrency> {
         return cryptoCurrencyDao.queryCryptocurrencies(limit, offset)
+    }
+
+    fun isResponseValid(arrayResponse: List<CryptoCurrency>): Boolean {
+        return arrayResponse.size > 0 && !TextUtils.isEmpty(arrayResponse[0].name)
     }
 
 }

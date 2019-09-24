@@ -50,7 +50,7 @@ class CryptoCurrencyRepository @Inject constructor(
 
 
     suspend fun getCryptocurrenciesFromApi(): List<CryptoCurrency> {
-        return apiInterface.getCryptocurrencies(Constants.START_ZERO_VALUE)
+        return apiInterface.getCryptocurrencies()
 
     }
 

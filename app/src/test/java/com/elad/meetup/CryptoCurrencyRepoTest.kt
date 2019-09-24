@@ -67,7 +67,7 @@ class CryptoCurrencyRepoTest {
 
     @Test
     fun isCryptoResponseReturnValidArray() = runBlocking {
-        `when`(apiInterface.getCryptocurrencies("0")).thenReturn(
+        `when`(apiInterface.getCryptocurrencies()).thenReturn(
             arrayListOf(CryptoCurrency("elad"), CryptoCurrency("test"), CryptoCurrency("fail"))
         )
         val arrayResponse = cryptoCurrencyRepository.getCryptocurrenciesFromApi()
@@ -76,7 +76,7 @@ class CryptoCurrencyRepoTest {
 
     @Test
     fun isCryptoResponseReturnErrorWhenNoData() = runBlocking {
-        `when`(apiInterface.getCryptocurrencies("0")).thenReturn(
+        `when`(apiInterface.getCryptocurrencies()).thenReturn(
             emptyList()
         )
 

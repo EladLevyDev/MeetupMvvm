@@ -11,5 +11,5 @@ interface ApiInterface {
 
     @GET("ticker/")
     suspend
-    fun getCryptocurrencies(@Query("start") start: String): List<CryptoCurrency>
+    fun getCryptocurrencies(@Query("start") start: String = "0"): List<CryptoCurrency>
 }

@@ -48,6 +48,9 @@ class CryptoCurrencyRepoTest {
         cryptoCurrencyRepository = CryptoCurrencyRepository(sharedPreferences, apiInterface, cryptoCurrencyDB, utils)
     }
 
+    /*
+        DB Tests
+     */
     @Test
     fun isPrefsSavedCryptoCurrencySuccessfully() {
         val cryptoCurrency = CryptoCurrency("elad")
@@ -57,6 +60,10 @@ class CryptoCurrencyRepoTest {
         cryptoCurrencyRepository.saveCryptoCurrency(cryptoCurrency)
         assert(cryptoCurrencyRepository.isSavedCryptoCurrencyValid())
     }
+
+    /*
+        Api Tests
+     */
 
     @Test
     fun isCryptoResponseReturnValidArray() = runBlocking {
@@ -68,9 +75,13 @@ class CryptoCurrencyRepoTest {
     }
 
     @Test
-    fun isCryptoResponseReturnErrorWhenNoResponse() = runBlocking {
-        //Todo: handle error mocks
-        assert(true)
+    fun isCryptoResponseReturnErrorWhenNoData() = runBlocking {
+        `when`(apiInterface.getCryptocurrencies("0")).thenReturn(
+            emptyList()
+        )
+
+        val arrayResponse = cryptoCurrencyRepository.getCryptocurrenciesFromApi()
+        assert(!cryptoCurrencyRepository.isResponseValid(arrayResponse))
     }
 
     @After

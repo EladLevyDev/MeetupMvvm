@@ -1,4 +1,4 @@
-package com.elad.meetup
+package com.elad.meetup.CryptoTesting
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider

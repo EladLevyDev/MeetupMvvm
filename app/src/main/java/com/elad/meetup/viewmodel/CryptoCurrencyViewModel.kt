@@ -1,7 +1,6 @@
 package com.elad.meetup.viewmodel
 
 
-import androidx.annotation.UiThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,14 +36,22 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
         CoroutineScope(Dispatchers.IO).launch {
 
             try {
-                val cryptoCurrencies = cryptoCurrencyRepository.getCryptocurrencies(limit, offset)
-                cryptocurrenciesResult.postValue(cryptoCurrencies)
+                val cryptoCurrencies = cryptoCurrencyRepository.getCryptocurrencies()
+                if (isLiveDataResponseValid(cryptoCurrencies)) {
+                    cryptocurrenciesResult.postValue(cryptoCurrencies)
+                }
                 cryptocurrenciesLoader.postValue(false)
+
             } catch (e: Exception) {
                 cryptocurrenciesLoader.postValue(false)
                 e.printStackTrace()
             }
+
         }
+    }
+
+    fun isLiveDataResponseValid(it: List<CryptoCurrency>?): Boolean {
+        return it != null && it.isNotEmpty()
     }
 
 }

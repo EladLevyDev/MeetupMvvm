@@ -1,6 +1,7 @@
 package com.elad.meetup.CryptoTesting
 
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import com.elad.meetup.model.CryptoCurrency
 import com.elad.meetup.repo.CryptoCurrencyRepository
@@ -9,6 +10,9 @@ import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
 import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
 import com.nhaarman.mockitokotlin2.mock
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -29,19 +33,25 @@ class CryptoCurrencyRepoTest {
 
 
     // Mock modules
+
+    @MockK
     private lateinit var cryptoCurrencyDB: CryptoCurrencyDao
+
+    @MockK
+    private lateinit var cryptoCurrency: CryptoCurrency
+
     private lateinit var utils: Utils
     private lateinit var apiInterface: ApiInterface
     private lateinit var sharedPreferences: SharedPreferencesHelper
 
     @Before
     fun setUp() {
-        println("Starting testing CryptoCurrencyRepo")
+        MockKAnnotations.init(this)
 
         // init modules mock
         utils = Utils(context)
         apiInterface = mock()
-        cryptoCurrencyDB = mock()
+
         sharedPreferences = SharedPreferencesHelper(context.getSharedPreferences("cryptoTEST", Context.MODE_PRIVATE))
 
         // Create repo instance mock
@@ -51,14 +61,26 @@ class CryptoCurrencyRepoTest {
     /*
         DB Tests
      */
+
     @Test
     fun isPrefsSavedCryptoCurrencySuccessfully() {
-        val cryptoCurrency = CryptoCurrency("elad")
-        cryptoCurrency.id = "2"
-        cryptoCurrency.priceBtc = "4"
+        every { cryptoCurrency.id } returns "2"
+        every { cryptoCurrency.name } returns "bitcoin"
+        every { cryptoCurrency.priceBtc } returns "4"
 
         cryptoCurrencyRepository.saveCryptoCurrency(cryptoCurrency)
         assert(cryptoCurrencyRepository.isSavedCryptoCurrencyValid())
+    }
+
+
+    @Test
+    fun isPrefsSavedCryptoCurrencyFailed() {
+        every { cryptoCurrency.id } returns ""
+        every { cryptoCurrency.name } returns "bitcoin"
+        every { cryptoCurrency.priceBtc } returns "4"
+
+        cryptoCurrencyRepository.saveCryptoCurrency(cryptoCurrency)
+        assert(!cryptoCurrencyRepository.isSavedCryptoCurrencyValid())
     }
 
     /*
@@ -82,10 +104,11 @@ class CryptoCurrencyRepoTest {
 
         val arrayResponse = cryptoCurrencyRepository.getCryptocurrenciesFromApi()
         assert(!cryptoCurrencyRepository.isResponseValid(arrayResponse))
+
     }
 
     @After
     fun finish() {
-        println("Finishing testing CryptoCurrencyRepo")
+
     }
 }

@@ -41,17 +41,7 @@ object Versions {
     const val lifecycle = "1.1.1"
     const val lifecycleCompiler = "1.1.1"
 
-    // Test Libraries
-    const val androidSupportRules = "1.0.0"
-    const val androidSupportRunner = "1.0.0"
-    const val assertJ = "3.8.0"
-    const val dexmakerMockito = "2.16.0"
-    const val dexopener = "0.12.1"
-    const val espresso = "3.0.1"
-    const val jUnit = "4.12"
-    const val mockitoKotlin = "1.5.0"
-    const val robolectric = "3.4.2"
-    const val runner = "0.5"
+
 }
 
 @Suppress("unused")
@@ -100,19 +90,5 @@ object AppDependencies {
 @Suppress("unused")
 object TestDependencies {
 
-    const val androidRules = "com.android.support.test:rules:${Versions.runner}"
-    const val androidRunner = "com.android.support.test:runner:${Versions.runner}"
-    const val assertj = "org.assertj:assertj-core:${Versions.assertJ}"
-    const val dexmakerMockito = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.dexmakerMockito}"
-    const val dexopener = "com.github.tmurakami:dexopener:${Versions.dexopener}"
-    const val espressoContrib = "com.android.support.test.espresso:espresso-contrib:${Versions.espresso}"
-    const val espressoCore = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
-    const val espressoIntents = "com.android.support.test.espresso:espresso-intents:${Versions.espresso}"
-    const val junit = "junit:junit:${Versions.jUnit}"
-    const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
-    const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.mockitoKotlin}"
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val roomTesting = "android.arch.persistence.room:testing:${Versions.room}"
-    const val supportRules = "com.android.support.test:rules:${Versions.androidSupportRules}"
-    const val supportRunner = "com.android.support.test:runner:${Versions.androidSupportRunner}"
-} 
+
+}

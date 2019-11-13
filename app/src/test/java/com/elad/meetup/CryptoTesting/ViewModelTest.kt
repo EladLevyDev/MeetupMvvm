@@ -1,38 +1,33 @@
 package com.elad.meetup.CryptoTesting
 
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import com.elad.meetup.model.CryptoCurrency
 import com.elad.meetup.repo.CryptoCurrencyRepository
 import com.elad.meetup.repo.network.ApiInterface
 import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
-import com.elad.meetup.utils.Constants
 import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
 import com.elad.meetup.viewmodel.CryptoCurrencyViewModel
-import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.runBlocking
-import org.junit.*
+
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import org.junit.After
 import org.junit.Assert.assertTrue
-import org.junit.Assert.fail
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
-import org.mockito.internal.configuration.GlobalConfiguration.validate
 import org.robolectric.RobolectricTestRunner
-import java.util.concurrent.TimeUnit
+import org.robolectric.annotation.Config
 
 
+@Config()
 @RunWith(RobolectricTestRunner::class)
 class ViewModelTest {
 
@@ -63,9 +58,12 @@ class ViewModelTest {
 
         // init modules mock
         utils = Utils(context)
+
         apiInterface = mock()
         cryptoCurrencyDB = mock()
+
         sharedPreferences = SharedPreferencesHelper(context.getSharedPreferences("cryptoTEST", Context.MODE_PRIVATE))
+
 
         // Create repo instance mock
         cryptoCurrencyRepository = CryptoCurrencyRepository(sharedPreferences, apiInterface, cryptoCurrencyDB, utils)
@@ -84,7 +82,7 @@ class ViewModelTest {
             Mock response from api
          */
         `when`(cryptoCurrencyRepository.getCryptocurrencies()).thenReturn(
-            arrayListOf(CryptoCurrency("elad"), CryptoCurrency("test"), CryptoCurrency("test2"))
+            arrayListOf(CryptoCurrency("bitcoin"), CryptoCurrency("ether"), CryptoCurrency("test2"))
         )
 
         cryptoCurrencyRepository.getCryptocurrencies()
@@ -97,7 +95,7 @@ class ViewModelTest {
 
     @After
     fun finish() {
-        println("Testing view model successfully")
+        println("Test finished successfully")
     }
 
 

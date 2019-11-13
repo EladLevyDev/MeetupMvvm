@@ -1,9 +1,11 @@
 package com.elad.meetup.viewmodel
 
 
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elad.meetup.BuildConfig
 import com.elad.meetup.repo.CryptoCurrencyRepository
 import com.elad.meetup.model.CryptoCurrency
 import kotlinx.coroutines.*
@@ -33,6 +35,7 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
 
     fun loadCryptocurrencies(limit: Int, offset: Int) {
         // Dispatchers.IO (main-safety block)
+        Build.VERSION_CODES.P
         CoroutineScope(Dispatchers.IO).launch {
 
             try {

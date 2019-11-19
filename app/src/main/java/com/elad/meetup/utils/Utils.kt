@@ -41,6 +41,6 @@ class Utils @Inject constructor(private val context: Context) {
     }
 
     fun isCryptoCurrencyIsValid(creditCard: CreditCard): Boolean {
-        return creditCard != null && !creditCard.name.isNullOrEmpty()
+        return creditCard != null && !creditCard.preffix.isNullOrEmpty()
     }
 }

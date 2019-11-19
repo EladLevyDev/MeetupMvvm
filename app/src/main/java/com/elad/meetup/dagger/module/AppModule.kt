@@ -1,16 +1,15 @@
 package com.elad.meetup.dagger.module
 
 import android.app.Application
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
-import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
+import com.elad.meetup.room.dbmodels.CreditCardDao
 import com.elad.meetup.room.local.Database
-import com.elad.meetup.viewmodel.CryptoCurrencyViewModelFactory
+import com.elad.meetup.viewmodel.CreditCardViewModelFactory
 import com.elad.meetup.utils.Constants
 import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
@@ -22,7 +21,7 @@ class AppModule(private val app: Application) {
     companion object {
         val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // Change the table name to the correct one
+                // Change the table preffix to the correct one
                 database.execSQL("ALTER TABLE cryptocurrency RENAME TO creditCards")
             }
         }
@@ -46,7 +45,7 @@ class AppModule(private val app: Application) {
     @Singleton
     fun provideCryptocurrenciesDao(
         database: Database
-    ): CryptoCurrencyDao = database.cryptocurrenciesDao()
+    ): CreditCardDao = database.cryptocurrenciesDao()
 
     @Provides
     @Singleton
@@ -57,7 +56,7 @@ class AppModule(private val app: Application) {
     @Provides
     @Singleton
     fun provideCryptocurrenciesViewModelFactory(
-        factory: CryptoCurrencyViewModelFactory
+        factory: CreditCardViewModelFactory
     ): ViewModelProvider.Factory = factory
 
     @Provides

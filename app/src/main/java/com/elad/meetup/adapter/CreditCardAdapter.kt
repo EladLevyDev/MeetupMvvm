@@ -11,8 +11,8 @@ import com.elad.meetup.R
 import com.elad.meetup.model.CreditCard
 import java.util.*
 
-class CryptoCurrencyAdapter(
-  creditCards: List<CreditCard>?) : RecyclerView.Adapter<CryptoCurrencyAdapter.CryptocurrencieViewHolder>() {
+class CreditCardAdapter(
+  creditCards: List<CreditCard>?) : RecyclerView.Adapter<CreditCardAdapter.CryptocurrencieViewHolder>() {
 
   private var cryptocurrenciesList = ArrayList<CreditCard>()
 
@@ -49,7 +49,6 @@ class CryptoCurrencyAdapter(
 
     fun cryptocurrencyListItem(creditCardItem: CreditCard) {
       cryptocurrencyId.text = creditCardItem.id
-      cryptocurrencyRate.text = creditCardItem.priceBtc
     }
   }
 }

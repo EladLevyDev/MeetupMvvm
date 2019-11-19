@@ -35,9 +35,9 @@ public class SharedPreferencesHelper {
     public boolean saveCryptoslInfo(CreditCard creditCard) {
         // Start a SharedPreferences transaction.
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(KEY_NAME, creditCard.getName());
+        editor.putString(KEY_NAME, creditCard.getPreffix());
         editor.putString(KEY_ID, creditCard.getId());
-        editor.putString(KEY_PRICE, creditCard.getPriceBtc());
+
 
         // Commit changes to SharedPreferences.
         return editor.commit();
@@ -49,8 +49,7 @@ public class SharedPreferencesHelper {
     public boolean isCryptoCurrencyValid() {
         // Get data from the SharedPreferences.
         return !TextUtils.isEmpty(mSharedPreferences.getString(KEY_NAME, ""))
-                && !TextUtils.isEmpty(mSharedPreferences.getString(KEY_ID, "")) &&
-                !TextUtils.isEmpty(mSharedPreferences.getString(KEY_PRICE, ""));
+                && !TextUtils.isEmpty(mSharedPreferences.getString(KEY_ID, ""));
 
     }
 }

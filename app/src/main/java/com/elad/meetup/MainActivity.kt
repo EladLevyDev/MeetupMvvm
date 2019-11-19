@@ -7,9 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.elad.meetup.adapter.CryptoCurrencyAdapter
-import com.elad.meetup.viewmodel.CryptoCurrencyViewModel
-import com.elad.meetup.viewmodel.CryptoCurrencyViewModelFactory
+import com.elad.meetup.adapter.CreditCardAdapter
+import com.elad.meetup.viewmodel.CreditCardViewModel
+import com.elad.meetup.viewmodel.CreditCardViewModelFactory
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import com.elad.meetup.model.CreditCard
@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
 
 
     @Inject
-    lateinit var cryptoCurrencyViewModelFactory: CryptoCurrencyViewModelFactory
+    lateinit var creditCardViewModelFactory: CreditCardViewModelFactory
 
-    private var cryptocurrenciesAdapter = CryptoCurrencyAdapter(ArrayList())
-    private lateinit var cryptoCurrencyViewModel: CryptoCurrencyViewModel
+    private var cryptocurrenciesAdapter = CreditCardAdapter(ArrayList())
+    private lateinit var creditCardViewModel: CreditCardViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModelMethods() {
-        cryptoCurrencyViewModel = ViewModelProviders.of(this, cryptoCurrencyViewModelFactory).get(
-            CryptoCurrencyViewModel::class.java
+        creditCardViewModel = ViewModelProviders.of(this, creditCardViewModelFactory).get(
+            CreditCardViewModel::class.java
         )
 
-        cryptoCurrencyViewModel.cryptocurrenciesResult().observe(this,
+        creditCardViewModel.cryptocurrenciesResult().observe(this,
             Observer<List<CreditCard>> {
                 if (it != null) {
                     val position = cryptocurrenciesAdapter.itemCount
@@ -50,13 +50,13 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        cryptoCurrencyViewModel.cryptocurrenciesError().observe(this, Observer<String> {
+        creditCardViewModel.cryptocurrenciesError().observe(this, Observer<String> {
             if (it != null) {
                 toast(it)
             }
         })
 
-        cryptoCurrencyViewModel.cryptocurrenciesLoader().observe(this, Observer<Boolean> {
+        creditCardViewModel.cryptocurrenciesLoader().observe(this, Observer<Boolean> {
             if (it == false) progressBar.visibility = View.GONE
         })
     }
@@ -72,6 +72,6 @@ class MainActivity : AppCompatActivity() {
 
     private  fun loadData() {
         progressBar.visibility = View.VISIBLE
-        cryptoCurrencyViewModel.loadCryptocurrencies(Constants.LIMIT, Constants.OFFSET)
+        creditCardViewModel.loadCryptocurrencies(Constants.LIMIT, Constants.OFFSET)
     }
 }

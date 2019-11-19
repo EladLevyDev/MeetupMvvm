@@ -5,14 +5,14 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elad.meetup.repo.CryptoCurrencyRepository
+import com.elad.meetup.repo.CreditCardRepository
 import com.elad.meetup.model.CreditCard
 import kotlinx.coroutines.*
 
 import javax.inject.Inject
 
 
-class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepository: CryptoCurrencyRepository) :
+class CreditCardViewModel @Inject constructor(private val creditCardRepository: CreditCardRepository) :
     ViewModel() {
 
     var cryptocurrenciesResult: MutableLiveData<List<CreditCard>> = MutableLiveData()
@@ -38,7 +38,7 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
         CoroutineScope(Dispatchers.IO).launch {
 
             try {
-                val cryptoCurrencies = cryptoCurrencyRepository.getCryptocurrencies()
+                val cryptoCurrencies = creditCardRepository.getCryptocurrencies()
                 if (isLiveDataResponseValid(cryptoCurrencies)) {
                     cryptocurrenciesResult.postValue(cryptoCurrencies)
                 }

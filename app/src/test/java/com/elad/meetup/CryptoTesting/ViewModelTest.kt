@@ -5,12 +5,12 @@ import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import com.elad.meetup.model.CreditCard
-import com.elad.meetup.repo.CryptoCurrencyRepository
+import com.elad.meetup.repo.CreditCardRepository
 import com.elad.meetup.repo.network.ApiInterface
-import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
+import com.elad.meetup.room.dbmodels.CreditCardDao
 import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
-import com.elad.meetup.viewmodel.CryptoCurrencyViewModel
+import com.elad.meetup.viewmodel.CreditCardViewModel
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.runBlocking
 
@@ -38,16 +38,16 @@ class ViewModelTest {
     val context = ApplicationProvider.getApplicationContext<Context>()
 
     // Repo modules
-    private lateinit var cryptoCurrencyDB: CryptoCurrencyDao
+    private lateinit var creditCardDB: CreditCardDao
     private lateinit var utils: Utils
     private lateinit var apiInterface: ApiInterface
     private lateinit var sharedPreferences: SharedPreferencesHelper
 
     // Repo
-    private lateinit var cryptoCurrencyRepository: CryptoCurrencyRepository
+    private lateinit var creditCardRepository: CreditCardRepository
 
     // ViewModel modules
-    private lateinit var cryptoCurrencyViewModel: CryptoCurrencyViewModel
+    private lateinit var creditCardViewModel: CreditCardViewModel
 
     // Mock observer for live data
     private val observer: Observer<List<CreditCard>> = mock()
@@ -60,18 +60,18 @@ class ViewModelTest {
         utils = Utils(context)
 
         apiInterface = mock()
-        cryptoCurrencyDB = mock()
+        creditCardDB = mock()
 
         sharedPreferences = SharedPreferencesHelper(context.getSharedPreferences("cryptoTEST", Context.MODE_PRIVATE))
 
 
         // Create repo instance mock
-        cryptoCurrencyRepository = CryptoCurrencyRepository(sharedPreferences, apiInterface, cryptoCurrencyDB, utils)
+        creditCardRepository = CreditCardRepository(sharedPreferences, apiInterface, creditCardDB, utils)
 
         // Create viewmodel instance
-        cryptoCurrencyViewModel = CryptoCurrencyViewModel(cryptoCurrencyRepository)
+        creditCardViewModel = CreditCardViewModel(creditCardRepository)
 
-        cryptoCurrencyViewModel.cryptocurrenciesResult.observeForever(observer)
+        creditCardViewModel.cryptocurrenciesResult.observeForever(observer)
 
     }
 
@@ -81,16 +81,16 @@ class ViewModelTest {
         /*
             Mock response from api
          */
-        `when`(cryptoCurrencyRepository.getCryptocurrencies()).thenReturn(
+        `when`(creditCardRepository.getCryptocurrencies()).thenReturn(
             arrayListOf(CreditCard("bitcoin"), CreditCard("ether"), CreditCard("test2"))
         )
 
-        cryptoCurrencyRepository.getCryptocurrencies()
+        creditCardRepository.getCryptocurrencies()
 
-        cryptoCurrencyViewModel.loadCryptocurrencies(50, 20)
+        creditCardViewModel.loadCryptocurrencies(50, 20)
 
         Thread.sleep(2000)
-        assertTrue(cryptoCurrencyViewModel.isLiveDataResponseValid(cryptoCurrencyViewModel.cryptocurrenciesResult.value))
+        assertTrue(creditCardViewModel.isLiveDataResponseValid(creditCardViewModel.cryptocurrenciesResult.value))
     }
 
 

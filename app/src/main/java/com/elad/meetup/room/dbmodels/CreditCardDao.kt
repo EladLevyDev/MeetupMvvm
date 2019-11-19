@@ -7,9 +7,9 @@ import androidx.room.Query
 import com.elad.meetup.model.CreditCard
 
 @Dao
-interface CryptoCurrencyDao {
+interface CreditCardDao {
 
-  @Query("SELECT * FROM creditCards ORDER BY rank limit :limit offset :offset")
+  @Query("SELECT * FROM creditCards ORDER BY id limit :limit offset :offset")
   suspend fun queryCryptocurrencies(limit: Int, offset: Int): List<CreditCard>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)

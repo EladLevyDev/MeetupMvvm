@@ -1,6 +1,6 @@
 package com.elad.meetup.model
 
 
-data class CryptoCurrencyResponse(
+data class CreditCardResponse(
     val creditCards: List<CreditCard>
 )

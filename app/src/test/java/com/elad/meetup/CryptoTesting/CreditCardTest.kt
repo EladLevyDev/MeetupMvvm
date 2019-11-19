@@ -2,9 +2,12 @@ package com.elad.meetup.CryptoTesting
 
 import com.elad.meetup.model.CreditCard
 import org.junit.After
+import org.junit.Assert
 import org.junit.Test
 import org.junit.Before
+import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
+import org.junit.runners.BlockJUnit4ClassRunner
 import org.robolectric.RobolectricTestRunner
 
 /**
@@ -13,7 +16,7 @@ import org.robolectric.RobolectricTestRunner
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(BlockJUnit4ClassRunner::class)
 class CreditCardTest {
 
     // Model
@@ -27,8 +30,9 @@ class CreditCardTest {
     @Test
     fun testIsCreditCardTypeUpCard() {
         // Uses real production code
-        assert(creditCard.isTypeUpCard())
+        Assert.assertTrue(CreditCard.UP_CARD, creditCard.isTypeUpCard())
     }
+
 
     @Test
     fun testIsCreditCardTypeNotUpCard() {
@@ -36,11 +40,11 @@ class CreditCardTest {
         creditCard.id = (CreditCard.MASTER_CARD)
 
         // Uses real production code
-        assert(!creditCard.isTypeUpCard())
+        Assert.assertFalse(creditCard.isTypeUpCard())
     }
 
     /*
-        This test will failed for intro purpose
+        This test will failed for intro purpose;
      */
 
     @Test
@@ -49,13 +53,12 @@ class CreditCardTest {
         creditCard.id = (CreditCard.VISA)
 
         // Uses real production code
-        assert(creditCard.isTypeUpCard())
+        Assert.assertTrue(creditCard.isTypeUpCard())
     }
 
     @After
     fun finishTesting() {
-        println("Finished Successfully")
+        println("Finished Test Successfully")
     }
-
 
 }

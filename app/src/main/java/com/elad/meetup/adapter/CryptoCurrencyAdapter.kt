@@ -8,16 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.elad.meetup.R
 
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 import java.util.*
 
 class CryptoCurrencyAdapter(
-    cryptoCurrencies: List<CryptoCurrency>?) : RecyclerView.Adapter<CryptoCurrencyAdapter.CryptocurrencieViewHolder>() {
+  creditCards: List<CreditCard>?) : RecyclerView.Adapter<CryptoCurrencyAdapter.CryptocurrencieViewHolder>() {
 
-  private var cryptocurrenciesList = ArrayList<CryptoCurrency>()
+  private var cryptocurrenciesList = ArrayList<CreditCard>()
 
   init {
-    this.cryptocurrenciesList = cryptoCurrencies as ArrayList<CryptoCurrency>
+    this.cryptocurrenciesList = creditCards as ArrayList<CreditCard>
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptocurrencieViewHolder {
@@ -36,9 +36,9 @@ class CryptoCurrencyAdapter(
     holder.cryptocurrencyListItem(cryptocurrencyItem)
   }
 
-  fun addCryptocurrencies(cryptoCurrencies: List<CryptoCurrency>) {
+  fun addCryptocurrencies(creditCards: List<CreditCard>) {
     val initPosition = cryptocurrenciesList.size
-    cryptocurrenciesList.addAll(cryptoCurrencies)
+    cryptocurrenciesList.addAll(creditCards)
     notifyItemRangeInserted(initPosition, cryptocurrenciesList.size)
   }
 
@@ -47,9 +47,9 @@ class CryptoCurrencyAdapter(
     private var cryptocurrencyId = itemView.findViewById<TextView>(R.id.cryptocurrency_id)!!
     private var cryptocurrencyRate = itemView.findViewById<TextView>(R.id.cryptocurrency_rate)!!
 
-    fun cryptocurrencyListItem(cryptoCurrencyItem: CryptoCurrency) {
-      cryptocurrencyId.text = cryptoCurrencyItem.id
-      cryptocurrencyRate.text = cryptoCurrencyItem.priceBtc
+    fun cryptocurrencyListItem(creditCardItem: CreditCard) {
+      cryptocurrencyId.text = creditCardItem.id
+      cryptocurrencyRate.text = creditCardItem.priceBtc
     }
   }
 }

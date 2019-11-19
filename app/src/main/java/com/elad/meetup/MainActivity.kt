@@ -12,7 +12,7 @@ import com.elad.meetup.viewmodel.CryptoCurrencyViewModel
 import com.elad.meetup.viewmodel.CryptoCurrencyViewModelFactory
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 import com.elad.meetup.utils.Constants
 import com.elad.meetup.utils.toast
 import javax.inject.Inject
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         cryptoCurrencyViewModel.cryptocurrenciesResult().observe(this,
-            Observer<List<CryptoCurrency>> {
+            Observer<List<CreditCard>> {
                 if (it != null) {
                     val position = cryptocurrenciesAdapter.itemCount
                     cryptocurrenciesAdapter.addCryptocurrencies(it)

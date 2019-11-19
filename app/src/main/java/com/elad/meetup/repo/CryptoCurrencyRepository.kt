@@ -2,9 +2,8 @@ package com.elad.meetup.repo
 
 import android.text.TextUtils
 import com.elad.meetup.repo.network.ApiInterface
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
-import com.elad.meetup.utils.Constants
 import com.elad.meetup.utils.SharedPreferencesHelper
 import com.elad.meetup.utils.Utils
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class CryptoCurrencyRepository @Inject constructor(
         const val PREF_KEY_CRYPTO_NAME = "PREF_KEY_CRYPTO_NAME"
     }
 
-    suspend fun getCryptocurrencies(): List<CryptoCurrency> {
+    suspend fun getCryptocurrencies(): List<CreditCard> {
         val hasConnection = utils.isConnectedToInternet()
         if (hasConnection) {
             val crypto = getCryptocurrenciesFromApi();
@@ -34,13 +33,13 @@ class CryptoCurrencyRepository @Inject constructor(
         }
     }
 
-    suspend fun updateDB(data: List<CryptoCurrency>) {
+    suspend fun updateDB(data: List<CreditCard>) {
         for (item in data) {
             cryptoCurrencyDao.insertCryptocurrency(item)
         }
     }
 
-    fun saveCryptoCurrency(crypto: CryptoCurrency) {
+    fun saveCryptoCurrency(crypto: CreditCard) {
         sharedPreferences.saveCryptoslInfo(crypto)
     }
 
@@ -49,16 +48,16 @@ class CryptoCurrencyRepository @Inject constructor(
     }
 
 
-    suspend fun getCryptocurrenciesFromApi(): List<CryptoCurrency> {
+    suspend fun getCryptocurrenciesFromApi(): List<CreditCard> {
         return apiInterface.getCryptocurrencies()
 
     }
 
-    suspend fun getCryptocurrenciesFromDb(limit: Int, offset: Int): List<CryptoCurrency> {
+    suspend fun getCryptocurrenciesFromDb(limit: Int, offset: Int): List<CreditCard> {
         return cryptoCurrencyDao.queryCryptocurrencies(limit, offset)
     }
 
-    fun isResponseValid(arrayResponse: List<CryptoCurrency>): Boolean {
+    fun isResponseValid(arrayResponse: List<CreditCard>): Boolean {
         return arrayResponse.size > 0 && !TextUtils.isEmpty(arrayResponse[0].name)
     }
 

@@ -4,20 +4,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.reactivex.Single
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 
 @Dao
 interface CryptoCurrencyDao {
 
-  @Query("SELECT * FROM cryptoCurrencies ORDER BY rank limit :limit offset :offset")
-  suspend fun queryCryptocurrencies(limit: Int, offset: Int): List<CryptoCurrency>
+  @Query("SELECT * FROM creditCards ORDER BY rank limit :limit offset :offset")
+  suspend fun queryCryptocurrencies(limit: Int, offset: Int): List<CreditCard>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun insertCryptocurrency(cryptoCurrency: CryptoCurrency)
+  suspend fun insertCryptocurrency(creditCard: CreditCard)
 
   @Insert(
       onConflict = OnConflictStrategy.REPLACE
   )
-  suspend fun insertAllCryptocurrencies(cryptoCurrencies: List<CryptoCurrency>)
+  suspend fun insertAllCryptocurrencies(creditCards: List<CreditCard>)
 }

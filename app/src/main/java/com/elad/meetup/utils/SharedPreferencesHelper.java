@@ -2,9 +2,7 @@ package com.elad.meetup.utils;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import com.elad.meetup.model.CryptoCurrency;
-
-import java.util.Calendar;
+import com.elad.meetup.model.CreditCard;
 
 /**
  * Helper class to manage access to {@link SharedPreferences}.
@@ -34,12 +32,12 @@ public class SharedPreferencesHelper {
      * @return {@code true} if writing to {@link SharedPreferences} succeeded. {@code false}
      * otherwise.
      */
-    public boolean saveCryptoslInfo(CryptoCurrency cryptoCurrency) {
+    public boolean saveCryptoslInfo(CreditCard creditCard) {
         // Start a SharedPreferences transaction.
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(KEY_NAME, cryptoCurrency.getName());
-        editor.putString(KEY_ID, cryptoCurrency.getId());
-        editor.putString(KEY_PRICE, cryptoCurrency.getPriceBtc());
+        editor.putString(KEY_NAME, creditCard.getName());
+        editor.putString(KEY_ID, creditCard.getId());
+        editor.putString(KEY_PRICE, creditCard.getPriceBtc());
 
         // Commit changes to SharedPreferences.
         return editor.commit();

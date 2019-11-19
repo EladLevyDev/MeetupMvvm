@@ -5,9 +5,8 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elad.meetup.BuildConfig
 import com.elad.meetup.repo.CryptoCurrencyRepository
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 import kotlinx.coroutines.*
 
 import javax.inject.Inject
@@ -16,11 +15,11 @@ import javax.inject.Inject
 class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepository: CryptoCurrencyRepository) :
     ViewModel() {
 
-    var cryptocurrenciesResult: MutableLiveData<List<CryptoCurrency>> = MutableLiveData()
+    var cryptocurrenciesResult: MutableLiveData<List<CreditCard>> = MutableLiveData()
     var cryptocurrenciesError: MutableLiveData<String> = MutableLiveData()
     var cryptocurrenciesLoader: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun cryptocurrenciesResult(): LiveData<List<CryptoCurrency>> {
+    fun cryptocurrenciesResult(): LiveData<List<CreditCard>> {
         return cryptocurrenciesResult
     }
 
@@ -53,7 +52,7 @@ class CryptoCurrencyViewModel @Inject constructor(private val cryptoCurrencyRepo
         }
     }
 
-    fun isLiveDataResponseValid(it: List<CryptoCurrency>?): Boolean {
+    fun isLiveDataResponseValid(it: List<CreditCard>?): Boolean {
         return it != null && it.isNotEmpty()
     }
 

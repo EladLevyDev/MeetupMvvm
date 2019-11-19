@@ -6,12 +6,7 @@ import android.net.NetworkInfo
 import javax.inject.Inject
 import android.net.NetworkCapabilities
 import android.os.Build
-import android.os.Build.VERSION_CODES
-import android.os.Build.VERSION_CODES.M
-import android.os.Build.VERSION
-import android.os.Build.VERSION.SDK_INT
-import androidx.core.content.ContextCompat.getSystemService
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 
 class Utils @Inject constructor(private val context: Context) {
 
@@ -45,7 +40,7 @@ class Utils @Inject constructor(private val context: Context) {
         return num1 > num2
     }
 
-    fun isCryptoCurrencyIsValid(cryptoCurrency: CryptoCurrency): Boolean {
-        return cryptoCurrency != null && !cryptoCurrency.name.isNullOrEmpty()
+    fun isCryptoCurrencyIsValid(creditCard: CreditCard): Boolean {
+        return creditCard != null && !creditCard.name.isNullOrEmpty()
     }
 }

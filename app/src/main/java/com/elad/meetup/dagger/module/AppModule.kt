@@ -23,7 +23,7 @@ class AppModule(private val app: Application) {
         val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 // Change the table name to the correct one
-                database.execSQL("ALTER TABLE cryptocurrency RENAME TO cryptoCurrencies")
+                database.execSQL("ALTER TABLE cryptocurrency RENAME TO creditCards")
             }
         }
     }

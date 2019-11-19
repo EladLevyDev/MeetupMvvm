@@ -8,10 +8,10 @@ import com.squareup.moshi.Json
 import java.io.Serializable
 
 @Entity(
-    tableName = "cryptoCurrencies"
+    tableName = "creditCards"
 )
 
-data class CryptoCurrency @JvmOverloads constructor(
+data class CreditCard @JvmOverloads constructor(
 
     @Json(name = "id")
     @PrimaryKey
@@ -74,6 +74,15 @@ data class CryptoCurrency @JvmOverloads constructor(
     @ColumnInfo(name = "last_updated")
     val lastUpdated: Double
 ) : Serializable {
-    constructor(cryptoName: String) : this("", cryptoName, "", 0, 0.0, "", "", "", "", "", "", "", "", "", 0.0)
+    constructor(id: String) : this(id, "", "", 0, 0.0, "", "", "", "", "", "", "", "", "", 0.0)
+    companion object {
+        const val VISA = "1"
+        const val MASTER_CARD = "2"
+        const val UP_CARD = "3"
+    }
+
+     fun isTypeUpCard(): Boolean {
+        return id == UP_CARD
+    }
 
 }

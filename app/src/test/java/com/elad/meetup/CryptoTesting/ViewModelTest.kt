@@ -4,7 +4,7 @@ import android.content.Context
 
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
-import com.elad.meetup.model.CryptoCurrency
+import com.elad.meetup.model.CreditCard
 import com.elad.meetup.repo.CryptoCurrencyRepository
 import com.elad.meetup.repo.network.ApiInterface
 import com.elad.meetup.room.dbmodels.CryptoCurrencyDao
@@ -50,7 +50,7 @@ class ViewModelTest {
     private lateinit var cryptoCurrencyViewModel: CryptoCurrencyViewModel
 
     // Mock observer for live data
-    private val observer: Observer<List<CryptoCurrency>> = mock()
+    private val observer: Observer<List<CreditCard>> = mock()
 
     @Before
     fun setUp() {
@@ -82,7 +82,7 @@ class ViewModelTest {
             Mock response from api
          */
         `when`(cryptoCurrencyRepository.getCryptocurrencies()).thenReturn(
-            arrayListOf(CryptoCurrency("bitcoin"), CryptoCurrency("ether"), CryptoCurrency("test2"))
+            arrayListOf(CreditCard("bitcoin"), CreditCard("ether"), CreditCard("test2"))
         )
 
         cryptoCurrencyRepository.getCryptocurrencies()
@@ -92,6 +92,7 @@ class ViewModelTest {
         Thread.sleep(2000)
         assertTrue(cryptoCurrencyViewModel.isLiveDataResponseValid(cryptoCurrencyViewModel.cryptocurrenciesResult.value))
     }
+
 
     @After
     fun finish() {

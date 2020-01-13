@@ -16,9 +16,8 @@ Languages, libraries and tools used
 ## Requirements
 
 - JDK 1.8
-- Android Studio 3
+- Android Studio 3.5
 - [Android SDK](http://developer.android.com/sdk/index.html)
-- Android Oreo [(API 27)](http://developer.android.com/tools/revisions/platforms.html)
 - Latest Android SDK Tools and build tools.
 
 

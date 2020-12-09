@@ -1,14 +1,13 @@
-package com.elad.meetup.CryptoTesting
+package com.elad.meetup.testing
 
 import com.elad.meetup.model.CreditCard
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
 import org.junit.Before
-import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
 import org.junit.runners.BlockJUnit4ClassRunner
-import org.robolectric.RobolectricTestRunner
+import java.sql.DriverManager.println
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -33,7 +32,6 @@ class CreditCardTest {
         Assert.assertTrue(CreditCard.UP_CARD, creditCard.isTypeUpCard())
     }
 
-
     @Test
     fun testIsCreditCardTypeNotUpCard() {
         // Mock object data
@@ -48,7 +46,7 @@ class CreditCardTest {
      */
 
     @Test
-    fun testFailedForIntro() {
+    fun testWillFailedForIntro() {
         // Mock object data
         creditCard.id = (CreditCard.VISA)
 

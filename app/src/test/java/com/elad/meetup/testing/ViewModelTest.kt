@@ -1,4 +1,4 @@
-package com.elad.meetup.CryptoTesting
+package com.elad.meetup.testing
 
 import android.content.Context
 
@@ -59,6 +59,7 @@ class ViewModelTest {
         // init modules mock
         utils = Utils(context)
 
+        // Creating our mocks
         apiInterface = mock()
         creditCardDB = mock()
 
@@ -79,17 +80,19 @@ class ViewModelTest {
     fun isLiveDataGetUpdatedAfterResponse() = runBlocking {
 
         /*
-            Mock response from api
+            Mock response method (when calling api)
          */
         `when`(creditCardRepository.getCryptocurrencies()).thenReturn(
             arrayListOf(CreditCard("bitcoin"), CreditCard("ether"), CreditCard("test2"))
         )
 
-        creditCardRepository.getCryptocurrencies()
-
+        // Trigger real production api method (creditCardRepository.getCryptocurrencies())
         creditCardViewModel.loadCryptocurrencies(50, 20)
 
+        // Wait some time
         Thread.sleep(2000)
+
+        // Validate data and test
         assertTrue(creditCardViewModel.isLiveDataResponseValid(creditCardViewModel.cryptocurrenciesResult.value))
     }
 

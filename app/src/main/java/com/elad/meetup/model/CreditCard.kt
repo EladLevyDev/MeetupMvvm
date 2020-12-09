@@ -26,13 +26,14 @@ data class CreditCard @JvmOverloads constructor(
 ) : Serializable {
 
     constructor(id: String) : this(id, "")
+
     companion object {
         const val VISA = "1"
         const val MASTER_CARD = "2"
         const val UP_CARD = "3"
     }
 
-     fun isTypeUpCard(): Boolean {
+    fun isTypeUpCard(): Boolean {
         return id == UP_CARD
     }
 
